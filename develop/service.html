@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>서비스 — LifeTax</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Pretendard', 'sans-serif'] },
+          colors: {
+            teal: {
+              50: '#f0fdfa', 100: '#ccfbf1', 200: '#99f6e4',
+              300: '#5eead4', 400: '#2dd4bf', 500: '#14b8a6',
+              600: '#0d9488', 700: '#0f766e', 800: '#115e59', 900: '#134e4a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Pretendard', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    /* Scroll animations */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* Float animation */
+    @keyframes float2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .float-slow { animation: float2 3s ease-in-out infinite; }
+
+    /* Nav scroll effect */
+    nav.scrolled { background: rgba(255,255,255,0.98) !important; box-shadow: 0 1px 12px rgba(0,0,0,0.06); }
+
+    /* Hero grid */
+    .hero-grid {
+      background-image: linear-gradient(rgba(20,184,166,0.08) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(20,184,166,0.08) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Card hover */
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: #99f6e4 !important; }
+
+    /* Sales page card hover */
+    .sales-card {
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease, border-color 0.3s ease;
+      cursor: default;
+    }
+    .sales-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 24px 48px rgba(20,184,166,0.15);
+      border-color: #5eead4 !important;
+    }
+    .sales-card-icon { transition: background 0.3s ease; }
+
+    /* Track card hover */
+    .track-card {
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+    .track-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 28px 56px rgba(20,184,166,0.15);
+      border-color: #5eead4 !important;
+    }
+    .track-card:hover .track-badge { background: #0d9488; }
+    .track-badge { transition: background 0.3s ease; }
+
+    /* Timeline line */
+    .timeline-line { position: relative; }
+    .timeline-line::before { content:''; position:absolute; left:88px; top:0; bottom:0; width:1px; background:#f1f5f9; }
+
+    /* Stagger delays */
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+    .delay-5 { transition-delay: 0.5s; }
+    .delay-6 { transition-delay: 0.6s; }
+
+    /* Mobile menu */
+    .mobile-menu { display:none; }
+    .mobile-menu.open { display:block; }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+
+    /* Image loading */
+    img { background: #f1f5f9; }
+
+    /* Selection */
+    ::selection { background: #ccfbf1; color: #134e4a; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background:transparent; }
+    ::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:3px; }
+
+    /* CTA gradient button hover */
+    .btn-cta { transition: all 0.2s ease; }
+    .btn-cta:hover { transform: scale(1.04); box-shadow: 0 8px 24px rgba(20,184,166,0.35); }
+
+    /* Scroll indicator */
+    @keyframes bounce-scroll { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+    .bounce-scroll { animation: bounce-scroll 2s ease-in-out infinite; }
+    @keyframes scroll-dot { 0%,100%{transform:translateY(0)} 50%{transform:translateY(10px)} }
+    .scroll-dot { animation: scroll-dot 1.5s ease-in-out infinite; }
+  </style>
+</head>
+<body class="bg-white text-gray-900">
+
+<!-- NAVIGATION -->
+<nav id="main-nav" class="fixed w-full z-50 top-0 bg-white/90 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+    <a href="index.html" class="flex items-center gap-3">
+      <div class="w-9 h-9 bg-teal-500 rounded-lg flex items-center justify-center flex-shrink-0">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="text-lg font-black text-gray-900 tracking-tight">LifeTax</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="index.html" class="text-sm font-semibold text-gray-600 hover:text-teal-600 transition-colors">홈</a>
+      <a href="service.html" class="text-sm font-semibold text-teal-600">서비스</a>
+      <a href="company.html" class="text-sm font-semibold text-gray-600 hover:text-teal-600 transition-colors">기업 소개</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="service.html" class="bg-teal-500 text-white text-sm font-bold px-5 py-2.5 rounded-lg hover:bg-teal-600 transition-colors flex items-center gap-2 btn-cta">
+        문의하기
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </a>
+      <button class="md:hidden p-2 rounded-lg hover:bg-gray-100" onclick="toggleMobile()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu md:hidden border-t border-gray-100 bg-white px-6 py-4 space-y-3">
+    <a href="index.html" class="block w-full text-left text-sm font-semibold text-gray-600 py-2">홈</a>
+    <a href="service.html" class="block w-full text-left text-sm font-semibold text-teal-600 py-2">서비스</a>
+    <a href="company.html" class="block w-full text-left text-sm font-semibold text-gray-600 py-2">기업 소개</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden bg-white pt-16">
+  <div class="absolute inset-0 hero-grid opacity-40 pointer-events-none"></div>
+  <div class="absolute top-0 right-0 w-96 h-96 rounded-full pointer-events-none" style="background:rgba(240,253,250,0.9);filter:blur(80px)"></div>
+  <div class="absolute bottom-0 left-0 w-80 h-80 rounded-full pointer-events-none" style="background:rgba(239,246,255,0.7);filter:blur(80px)"></div>
+  <!-- 세금 데이터 SVG 배경 -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    <svg class="absolute w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- 바 차트 - 왼쪽 하단 -->
+      <g style="animation:float2 8s ease-in-out infinite 1s" opacity="0.18">
+        <rect x="60" y="680" width="28" height="80" rx="4" fill="#14b8a6"/>
+        <rect x="98" y="640" width="28" height="120" rx="4" fill="#14b8a6"/>
+        <rect x="136" y="600" width="28" height="160" rx="4" fill="#14b8a6"/>
+        <rect x="174" y="620" width="28" height="140" rx="4" fill="#14b8a6"/>
+        <rect x="212" y="570" width="28" height="190" rx="4" fill="#14b8a6"/>
+        <line x1="50" y1="760" x2="250" y2="760" stroke="#14b8a6" stroke-width="1.5"/>
+      </g>
+      <!-- 원형 차트 - 오른쪽 상단 -->
+      <g style="animation:float2 9s ease-in-out infinite 0.5s" opacity="0.15">
+        <circle cx="1300" cy="180" r="90" fill="none" stroke="#14b8a6" stroke-width="2"/>
+        <path d="M1300 90 A90 90 0 0 1 1390 180" fill="none" stroke="#14b8a6" stroke-width="16" stroke-linecap="round"/>
+        <path d="M1390 180 A90 90 0 0 1 1245 252" fill="none" stroke="#0d9488" stroke-width="16" stroke-linecap="round"/>
+        <circle cx="1300" cy="180" r="60" fill="none" stroke="#14b8a6" stroke-width="1" stroke-dasharray="4 4"/>
+        <circle cx="1300" cy="180" r="8" fill="#14b8a6" opacity="0.5"/>
+      </g>
+      <!-- 문서/영수증 아이콘 - 오른쪽 하단 -->
+      <g style="animation:float2 7s ease-in-out infinite 2s" opacity="0.13">
+        <rect x="1180" y="650" width="100" height="130" rx="8" fill="none" stroke="#14b8a6" stroke-width="2"/>
+        <line x1="1200" y1="690" x2="1260" y2="690" stroke="#14b8a6" stroke-width="2"/>
+        <line x1="1200" y1="715" x2="1260" y2="715" stroke="#14b8a6" stroke-width="2"/>
+        <line x1="1200" y1="740" x2="1240" y2="740" stroke="#14b8a6" stroke-width="2"/>
+        <line x1="1200" y1="765" x2="1250" y2="765" stroke="#14b8a6" stroke-width="2"/>
+        <rect x="1190" y="660" width="40" height="16" rx="3" fill="#14b8a6" opacity="0.3"/>
+      </g>
+      <!-- 상승 화살표 라인 - 왼쪽 상단 -->
+      <g style="animation:float2 10s ease-in-out infinite 3s" opacity="0.12">
+        <polyline points="80,300 160,240 240,260 340,180 420,140" fill="none" stroke="#14b8a6" stroke-width="2.5" stroke-linejoin="round"/>
+        <polygon points="420,130 435,155 405,155" fill="#14b8a6"/>
+        <circle cx="80" cy="300" r="5" fill="#14b8a6"/>
+        <circle cx="160" cy="240" r="5" fill="#14b8a6"/>
+        <circle cx="240" cy="260" r="5" fill="#14b8a6"/>
+        <circle cx="340" cy="180" r="5" fill="#14b8a6"/>
+      </g>
+      <!-- 연결 네트워크 - 중앙 우측 -->
+      <g style="animation:float2 8.5s ease-in-out infinite 1.5s" opacity="0.1">
+        <circle cx="1100" cy="450" r="12" fill="none" stroke="#14b8a6" stroke-width="1.5"/>
+        <circle cx="1180" cy="390" r="8" fill="none" stroke="#14b8a6" stroke-width="1.5"/>
+        <circle cx="1200" cy="490" r="10" fill="none" stroke="#14b8a6" stroke-width="1.5"/>
+        <circle cx="1060" cy="510" r="7" fill="none" stroke="#14b8a6" stroke-width="1.5"/>
+        <line x1="1100" y1="450" x2="1180" y2="390" stroke="#14b8a6" stroke-width="1"/>
+        <line x1="1100" y1="450" x2="1200" y2="490" stroke="#14b8a6" stroke-width="1"/>
+        <line x1="1100" y1="450" x2="1060" y2="510" stroke="#14b8a6" stroke-width="1"/>
+        <line x1="1180" y1="390" x2="1200" y2="490" stroke="#14b8a6" stroke-width="1"/>
+      </g>
+    </svg>
+  </div>
+  <div class="relative z-10 max-w-5xl mx-auto text-center px-6">
+    <div class="inline-flex items-center gap-2 bg-teal-50 text-teal-700 text-xs font-black px-5 py-2 rounded-full mb-8 border border-teal-100 uppercase tracking-widest reveal visible">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/><line x1="12" y1="6" x2="12" y2="2"/><line x1="12" y1="22" x2="12" y2="18"/></svg>
+      FINANCIAL DECISION PLATFORM
+    </div>
+    <h1 class="text-5xl md:text-7xl font-black text-gray-900 mb-6 leading-tight tracking-tight reveal visible delay-1">데이터 기반 금융·세무<br/><span style="background:linear-gradient(135deg,#14b8a6,#10b981);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">의사결정 플랫폼</span></h1>
+    <p class="text-xl md:text-2xl text-gray-500 mb-4 max-w-2xl mx-auto leading-relaxed font-semibold reveal visible delay-2">세금 환급 분석부터 부동산 세금 시뮬레이션까지</p>
+    <p class="text-base text-gray-400 mb-12 max-w-xl mx-auto reveal visible delay-3">LifeTax는 금융·세무 의사결정을 위한 데이터 기반 분석 서비스를 제공합니다.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center reveal visible delay-4">
+      <a href="index.html" class="bg-teal-500 text-white font-bold px-8 py-4 rounded-lg hover:bg-teal-600 transition-colors flex items-center gap-2 text-base btn-cta justify-center">서비스 시작하기 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <button class="text-gray-500 font-bold px-8 py-4 rounded-lg border border-gray-200 hover:border-teal-400 hover:text-teal-600 transition-colors text-base flex items-center gap-2 justify-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> Deck 다운로드</button>
+    </div>
+  </div>
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center bounce-scroll">
+    <div class="w-5 h-8 border-2 border-gray-300 rounded-full flex justify-center pt-1.5">
+      <div class="w-1 h-1.5 bg-teal-400 rounded-full scroll-dot"></div>
+    </div>
+  </div>
+</section>
+
+<!-- OUR APPROACH CAROUSEL -->
+<section class="py-24 px-6 bg-teal-500">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12 reveal">
+      <div class="text-xs font-black text-teal-100 uppercase tracking-widest mb-4">Our Approach</div>
+      <h2 class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight"><span class="text-teal-100">LifeTax </span> 금융 분석 과정</h2>
+      <p class="text-white/90 text-lg">데이터 입력부터 분석, 전략 제안까지<br>LifeTax의 금융 의사결정 과정을 확인하세요.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 reveal">
+      <div class="sales-card p-8 rounded-2xl border border-teal-200 bg-white shadow-md">
+        <div class="sales-card-icon w-12 h-12 bg-teal-500 rounded-xl flex items-center justify-center mb-6 text-white" style="box-shadow:0 8px 20px rgba(20,184,166,0.25)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        </div>
+        <h3 class="text-xl font-black text-gray-900 mb-3 tracking-tight">1. 데이터 입력</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">세금 신고 정보와 자산 정보를 입력하면 LifeTax 분석이 시작됩니다.</p>
+      </div>
+      <div class="sales-card p-8 rounded-2xl border border-teal-200 bg-white shadow-md">
+        <div class="sales-card-icon w-12 h-12 bg-teal-500 rounded-xl flex items-center justify-center mb-6 text-white" style="box-shadow:0 8px 20px rgba(20,184,166,0.25)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h3 class="text-xl font-black text-gray-900 mb-3 tracking-tight">2. 데이터 분석</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">분석 엔진이 세금 환급 가능 금액과 자산 보유 구조에<br>따른 세금 영향을 분석합니다.</p>
+      </div>
+      <div class="sales-card p-8 rounded-2xl border border-teal-200 bg-white shadow-md">
+        <div class="sales-card-icon w-12 h-12 bg-teal-500 rounded-xl flex items-center justify-center mb-6 text-white" style="box-shadow:0 8px 20px rgba(20,184,166,0.25)">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="text-xl font-black text-gray-900 mb-3 tracking-tight">3. 전략 제안</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">분석 결과를 기반으로 환급 가능 금액과 최적의 자산<br>전략을 제안합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EVOLUTION TIMELINE -->
+<section class="py-24 px-6 bg-gray-50 border-t border-gray-100">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <div class="text-xs font-black text-teal-500 uppercase tracking-widest mb-4">Evolution</div>
+      <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">세무의 진화</h2>
+      <p class="text-gray-500 text-lg">과거에서 미래로, 세무 인프라의 패러다임 전환</p>
+    </div>
+    <div class="flex flex-col lg:flex-row gap-4 items-end justify-center">
+      <div class="lg:w-1/4 w-full reveal delay-1">
+        <div class="bg-gray-100 border border-gray-200 rounded-2xl p-6 min-h-48">
+          <span class="text-xs font-black text-gray-400 bg-white px-3 py-1 rounded-full border border-gray-200 inline-block mb-4">Stage 1</span>
+          <div class="w-10 h-10 bg-gray-200 rounded-xl flex items-center justify-center mb-4"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></div>
+          <h3 class="text-base font-black text-gray-600 mb-3">신고 대행 시대</h3>
+          <ul class="space-y-2 text-gray-400 text-sm"><li class="flex items-center gap-2"><div class="w-1 h-1 bg-gray-300 rounded-full"></div>단순 서류 작성</li><li class="flex items-center gap-2"><div class="w-1 h-1 bg-gray-300 rounded-full"></div>브랜드 신뢰 의존</li><li class="flex items-center gap-2"><div class="w-1 h-1 bg-gray-300 rounded-full"></div>일반 DB 저장</li></ul>
+        </div>
+      </div>
+      <div class="hidden lg:flex items-center justify-center pb-20"><div class="w-8 h-8 rounded-full bg-gray-200 border border-gray-300 flex items-center justify-center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
+      <div class="lg:w-1/4 w-full reveal delay-2">
+        <div class="bg-gray-100 border border-gray-200 rounded-2xl p-6 min-h-56">
+          <span class="text-xs font-black text-gray-400 bg-white px-3 py-1 rounded-full border border-gray-200 inline-block mb-4">Stage 2</span>
+          <div class="w-12 h-12 bg-gray-200 rounded-xl flex items-center justify-center mb-4"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+          <h3 class="text-lg font-black text-gray-600 mb-3">전통 세무 상담 시대</h3>
+          <ul class="space-y-2 text-gray-400 text-sm"><li class="flex items-center gap-2"><div class="w-1 h-1 bg-gray-300 rounded-full"></div>인적 네트워크 기반</li><li class="flex items-center gap-2"><div class="w-1 h-1 bg-gray-300 rounded-full"></div>점별 상담 제공</li><li class="flex items-center gap-2"><div class="w-1 h-1 bg-gray-300 rounded-full"></div>대면 미팅 필수</li></ul>
+        </div>
+      </div>
+      <div class="hidden lg:flex items-center justify-center pb-20"><div class="w-8 h-8 rounded-full bg-gray-200 border border-gray-300 flex items-center justify-center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" stroke-width="2"><path d="M9 18l6-6-6-6"/></svg></div></div>
+      <div class="lg:w-1/3 w-full relative reveal delay-3">
+        <div class="absolute -top-3 right-4 z-10"><span class="bg-teal-500 text-white text-xs font-black px-4 py-1.5 rounded-full shadow-lg">Next-Gen</span></div>
+        <div class="bg-white rounded-2xl p-8 min-h-80 shadow-xl border-2 border-teal-200">
+          <span class="text-xs font-black text-teal-600 bg-teal-50 px-3 py-1 rounded-full border border-teal-100 inline-block mb-6">Stage 3 — Now</span>
+          <div class="w-14 h-14 bg-teal-500 rounded-xl flex items-center justify-center mb-5 shadow-lg" style="box-shadow:0 8px 20px rgba(20,184,166,0.3)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <h3 class="text-xl font-black text-gray-900 mb-1">데이터 기반 세무 시대</h3>
+          <p class="text-2xl font-black text-teal-500 mb-6">LifeTax</p>
+          <ul class="space-y-3 text-gray-700 text-sm">
+            <li class="flex items-center gap-3"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="font-semibold">검증 가능한 분석 결과</span></li>
+            <li class="flex items-center gap-3"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="font-semibold">리스크를 줄이는 의사결정</span></li>
+            <li class="flex items-center gap-3"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="font-semibold">세금·자산 통합 분석</span></li>
+            <li class="flex items-center gap-3"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span class="font-semibold">개인 맞춤 금융 전략</span></li>
+          </ul>
+          <p class="mt-6 text-sm font-bold text-teal-500 italic">"Trust by Code, Not by Claim."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE TRACKS -->
+<section id="service-tracks" class="py-24 px-6 bg-white">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 reveal">
+      <div class="text-xs font-black text-teal-500 uppercase tracking-widest mb-4">SERVICE TRACKS</div>
+      <h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">서비스 트랙 구조</h2>
+      <p class="text-gray-500 text-lg">LifeTax는 두 가지 핵심 트랙을 통해<br>세금 환급 분석과 자산 구조 의사결정을 지원합니다.</p>
+    </div>
+    <!-- Track 1 -->
+    <div class="track-card bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-sm mb-10 reveal">
+      <div class="grid grid-cols-1 lg:grid-cols-2">
+        <div class="relative h-64 lg:h-auto overflow-hidden">
+          <img src="./img/Track1.png" alt="" class="w-full h-full object-cover"/>
+          <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(17,24,39,0.4),transparent)"></div>
+        </div>
+        <div class="p-8 lg:p-12 relative">
+          <span class="track-badge absolute top-8 right-8 bg-teal-500 text-white text-xs font-black px-4 py-1.5 rounded-full shadow">Track 1</span>
+          <div class="text-xs font-black text-teal-500 uppercase tracking-widest mb-2">TAX REFUND ANALYSIS</div>
+          <h3 class="text-2xl md:text-3xl font-black text-gray-900 mb-2 tracking-tight">청년 소득세 감면 경정청구</h3>
+          <p class="text-teal-600 font-bold text-sm mb-4">놓치고 있던 세금, 최대 5년 환급 가능성 분석</p>
+          <p class="text-gray-500 text-sm leading-relaxed mb-8">청년 소득세 감면 제도와 경정청구 데이터를 기반으로<br>환급 가능한 세금을 분석하고 환급 가능성을 진단합니다.</p>
+          <div class="grid grid-cols-3 gap-4">
+            <div class="bg-gray-50 rounded-xl p-4 border border-gray-200"><div class="text-xl font-black text-teal-500 mb-1">최대 5년</div><div class="text-xs text-gray-500 font-semibold leading-tight">환급 분석</div></div>
+            <div class="bg-gray-50 rounded-xl p-4 border border-gray-200"><div class="text-xl font-black text-teal-500 mb-1">자동 판별</div><div class="text-xs text-gray-500 font-semibold leading-tight">청년 감면 적용 여부</div></div>
+            <div class="bg-gray-50 rounded-xl p-4 border border-gray-200"><div class="text-xl font-black text-teal-500 mb-1">데이터 기반</div><div class="text-xs text-gray-500 font-semibold leading-tight">경정청구 환급 금액 계산</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Track 2 -->
+    <div class="track-card bg-white rounded-3xl overflow-hidden border border-gray-200 shadow-sm reveal">
+      <div class="grid grid-cols-1 lg:grid-cols-2">
+        <div class="p-8 lg:p-12 order-2 lg:order-1 relative">
+          <span class="track-badge absolute top-8 right-8 bg-teal-500 text-white text-xs font-black px-4 py-1.5 rounded-full shadow">Track 2</span>
+          <div class="text-xs font-black text-teal-500 uppercase tracking-widest mb-2">ASSET STRUCTURE SIMULATION</div>
+          <h3 class="text-2xl md:text-3xl font-black text-gray-900 mb-2 tracking-tight">부동산 세금 비교 시뮬레이션</h3>
+          <p class="text-teal-600 font-bold text-sm mb-4">자산 구조에 따른 세금 영향을 한 번에 비교</p>
+          <p class="text-gray-500 text-sm leading-relaxed mb-8">자산 보유 구조에 따른 세금 영향을 다양한 시나리오로 비교 분석합니다.</p>
+          <div class="grid grid-cols-3 gap-4">
+            <div class="bg-gray-50 rounded-xl p-4 border border-gray-200"><div class="text-xl font-black text-teal-500 mb-1">6가지</div><div class="text-xs text-gray-500 font-semibold leading-tight">보유 구조 비교</div></div>
+            <div class="bg-gray-50 rounded-xl p-4 border border-gray-200"><div class="text-xl font-black text-teal-500 mb-1">자동 계산</div><div class="text-xs text-gray-500 font-semibold leading-tight">세금 영향 분석</div></div>
+            <div class="bg-gray-50 rounded-xl p-4 border border-gray-200"><div class="text-xl font-black text-teal-500 mb-1">절세 전략</div><div class="text-xs text-gray-500 font-semibold leading-tight">시뮬레이션 분석</div></div>
+          </div>
+        </div>
+        <div class="relative h-64 lg:h-auto overflow-hidden order-1 lg:order-2">
+          <img src="./img/Track2.png" alt="" class="w-full h-full object-cover"/>
+          <div class="absolute inset-0" style="background:linear-gradient(to top,rgba(17,24,39,0.4),transparent)"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-24 px-6" style="background:linear-gradient(135deg,#14b8a6,#0d9488)">
+  <div class="max-w-4xl mx-auto">
+    <div class="rounded-3xl p-12 text-center reveal">
+      <h2 class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">강력한 파트너십</h2>
+      <p class="text-white/80 text-lg mb-10">LifeTax와 함께 혁신을 만들어갈 투자자 및 파트너를 찾습니다.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button class="bg-white text-teal-600 font-bold px-8 py-4 rounded-xl hover:bg-teal-50 transition-colors flex items-center gap-2 text-base justify-center btn-cta shadow-lg"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>제휴 의뢰하기</button>
+        <button class="bg-white/20 text-white font-bold px-8 py-4 rounded-xl hover:bg-white/30 transition-colors flex items-center gap-2 text-base justify-center btn-cta border border-white/30"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Deck 다운로드</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-gray-50 border-t border-gray-100 py-12 px-6">
+  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+    <a href="index.html" class="flex items-center gap-3">
+      <div class="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linejoin="round"/><path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg></div>
+      <span class="font-black text-gray-900">LifeTax</span>
+    </a>
+    <div class="flex gap-6 text-sm font-semibold text-gray-500">
+      <a href="index.html" class="hover:text-teal-600 transition-colors">홈</a>
+      <a href="service.html" class="text-teal-500">서비스</a>
+      <a href="company.html" class="hover:text-teal-600 transition-colors">기업 소개</a>
+    </div>
+    <span class="text-sm text-gray-400">© 2026 LifeTax. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+  function toggleMobile() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('main-nav');
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  function initReveal() {
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => {
+      if (!el.classList.contains('visible')) observer.observe(el);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    initReveal();
+    // URL 해시가 있으면 해당 섹션으로 스크롤
+    if (window.location.hash) {
+      setTimeout(() => {
+        const el = document.querySelector(window.location.hash);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  });
+
+  document.addEventListener('click', (e) => {
+    const menu = document.getElementById('mobile-menu');
+    const nav = document.getElementById('main-nav');
+    if (!nav.contains(e.target)) menu.classList.remove('open');
+  });
+</script>
+</body>
+</html>
