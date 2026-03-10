@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>기업 소개 — LifeTax</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Pretendard', 'sans-serif'] },
+          colors: {
+            teal: {
+              50: '#f0fdfa', 100: '#ccfbf1', 200: '#99f6e4',
+              300: '#5eead4', 400: '#2dd4bf', 500: '#14b8a6',
+              600: '#0d9488', 700: '#0f766e', 800: '#115e59', 900: '#134e4a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Pretendard', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+
+    /* Scroll animations */
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* Float animation */
+    @keyframes float2 { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+    .float-slow { animation: float2 3s ease-in-out infinite; }
+
+    /* Nav scroll effect */
+    nav.scrolled { background: rgba(255,255,255,0.98) !important; box-shadow: 0 1px 12px rgba(0,0,0,0.06); }
+
+    /* Hero grid */
+    .hero-grid {
+      background-image: linear-gradient(rgba(20,184,166,0.08) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(20,184,166,0.08) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Card hover */
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); border-color: #99f6e4 !important; }
+
+    /* Stagger delays */
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+
+    /* Mobile menu */
+    .mobile-menu { display:none; }
+    .mobile-menu.open { display:block; }
+
+    /* Smooth scroll */
+    html { scroll-behavior: smooth; }
+
+    /* Image loading */
+    img { background: #f1f5f9; }
+
+    /* Selection */
+    ::selection { background: #ccfbf1; color: #134e4a; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background:transparent; }
+    ::-webkit-scrollbar-thumb { background:#cbd5e1; border-radius:3px; }
+
+    /* CTA gradient button hover */
+    .btn-cta { transition: all 0.2s ease; }
+    .btn-cta:hover { transform: scale(1.04); box-shadow: 0 8px 24px rgba(20,184,166,0.35); }
+
+    /* Scroll indicator */
+    @keyframes bounce-scroll { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
+    .bounce-scroll { animation: bounce-scroll 2s ease-in-out infinite; }
+    @keyframes scroll-dot { 0%,100%{transform:translateY(0)} 50%{transform:translateY(10px)} }
+    .scroll-dot { animation: scroll-dot 1.5s ease-in-out infinite; }
+
+    /* Service card icon group hover */
+    .service-card:hover .service-icon { background: #14b8a6; color: white; }
+    .service-icon { transition: all 0.3s ease; }
+  </style>
+</head>
+<body class="bg-white text-gray-900">
+
+<!-- NAVIGATION -->
+<nav id="main-nav" class="fixed w-full z-50 top-0 bg-white/90 backdrop-blur-md border-b border-gray-100 transition-all duration-300">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+    <a href="index.html" class="flex items-center gap-3">
+      <div class="w-9 h-9 bg-teal-500 rounded-lg flex items-center justify-center flex-shrink-0">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="text-lg font-black text-gray-900 tracking-tight">LifeTax</span>
+    </a>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="company.html" class="text-sm font-semibold text-teal-600">기업 소개</a>
+      <a href="service.html" class="text-sm font-semibold text-gray-600 hover:text-teal-600 transition-colors">서비스</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="service.html" class="bg-teal-500 text-white text-sm font-bold px-5 py-2.5 rounded-lg hover:bg-teal-600 transition-colors flex items-center gap-2 btn-cta">
+        문의하기
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+      </a>
+      <button class="md:hidden p-2 rounded-lg hover:bg-gray-100" onclick="toggleMobile()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="mobile-menu md:hidden border-t border-gray-100 bg-white px-6 py-4 space-y-3">
+    <a href="company.html" class="block w-full text-left text-sm font-semibold text-teal-600 py-2">기업 소개</a>
+    <a href="service.html" class="block w-full text-left text-sm font-semibold text-gray-600 py-2">서비스</a>
+  </div>
+</nav>
+
+<!-- COMPANY HERO INTRO -->
+<section class="relative min-h-screen flex items-center overflow-hidden pt-16" style="background:#0d1117">
+  <div class="absolute inset-0 pointer-events-none" style="background-image:repeating-linear-gradient(0deg,transparent,transparent 59px,rgba(20,184,166,0.07) 60px),repeating-linear-gradient(90deg,transparent,transparent 59px,rgba(20,184,166,0.07) 60px)"></div>
+  <div class="absolute top-1/4 right-1/4 w-96 h-96 rounded-full pointer-events-none" style="background:rgba(20,184,166,0.06);filter:blur(120px)"></div>
+  <!-- 블록체인 노드 SVG -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    <svg class="absolute w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <!-- 연결선 -->
+      <line x1="980" y1="160" x2="1140" y2="260" stroke="#14b8a6" stroke-width="1" stroke-opacity="0.3"/>
+      <line x1="1140" y1="260" x2="1320" y2="180" stroke="#14b8a6" stroke-width="1" stroke-opacity="0.25"/>
+      <line x1="1140" y1="260" x2="1180" y2="420" stroke="#14b8a6" stroke-width="1" stroke-opacity="0.2"/>
+      <line x1="1180" y1="420" x2="1340" y2="480" stroke="#14b8a6" stroke-width="1" stroke-opacity="0.2"/>
+      <line x1="980" y1="160" x2="880" y2="300" stroke="#14b8a6" stroke-width="1" stroke-opacity="0.2"/>
+      <line x1="1320" y1="620" x2="1200" y2="700" stroke="#14b8a6" stroke-width="1" stroke-opacity="0.2"/>
+      <line x1="1200" y1="700" x2="1380" y2="750" stroke="#14b8a6" stroke-width="1" stroke-opacity="0.15"/>
+      <!-- 블록 - 오른쪽 상단 -->
+      <g style="animation:float2 7s ease-in-out infinite">
+        <rect x="950" y="135" width="72" height="52" rx="8" fill="none" stroke="#14b8a6" stroke-width="1.5" stroke-opacity="0.6"/>
+        <rect x="958" y="143" width="56" height="36" rx="5" fill="#14b8a6" fill-opacity="0.08"/>
+        <line x1="950" y1="161" x2="1022" y2="161" stroke="#14b8a6" stroke-width="0.8" stroke-opacity="0.35"/>
+        <circle cx="986" cy="161" r="4" fill="#14b8a6" fill-opacity="0.7"/>
+      </g>
+      <g style="animation:float2 8s ease-in-out infinite 1s">
+        <rect x="1110" y="235" width="72" height="52" rx="8" fill="none" stroke="#14b8a6" stroke-width="1.5" stroke-opacity="0.5"/>
+        <rect x="1118" y="243" width="56" height="36" rx="5" fill="#14b8a6" fill-opacity="0.07"/>
+        <line x1="1110" y1="261" x2="1182" y2="261" stroke="#14b8a6" stroke-width="0.8" stroke-opacity="0.3"/>
+        <circle cx="1146" cy="261" r="4" fill="#14b8a6" fill-opacity="0.6"/>
+      </g>
+      <g style="animation:float2 9s ease-in-out infinite 2s">
+        <rect x="1290" y="155" width="72" height="52" rx="8" fill="none" stroke="#14b8a6" stroke-width="1.5" stroke-opacity="0.5"/>
+        <rect x="1298" y="163" width="56" height="36" rx="5" fill="#14b8a6" fill-opacity="0.07"/>
+        <line x1="1290" y1="181" x2="1362" y2="181" stroke="#14b8a6" stroke-width="0.8" stroke-opacity="0.3"/>
+        <circle cx="1326" cy="181" r="4" fill="#14b8a6" fill-opacity="0.6"/>
+      </g>
+      <!-- 블록 - 오른쪽 하단 -->
+      <g style="animation:float2 7.5s ease-in-out infinite 0.5s">
+        <rect x="1150" y="395" width="68" height="52" rx="8" fill="none" stroke="#14b8a6" stroke-width="1.5" stroke-opacity="0.45"/>
+        <rect x="1158" y="403" width="52" height="36" rx="5" fill="#14b8a6" fill-opacity="0.06"/>
+        <line x1="1150" y1="421" x2="1218" y2="421" stroke="#14b8a6" stroke-width="0.8" stroke-opacity="0.28"/>
+        <circle cx="1184" cy="421" r="3.5" fill="#14b8a6" fill-opacity="0.55"/>
+      </g>
+      <g style="animation:float2 8.5s ease-in-out infinite 3s">
+        <rect x="1290" y="595" width="68" height="52" rx="8" fill="none" stroke="#14b8a6" stroke-width="1.5" stroke-opacity="0.4"/>
+        <rect x="1298" y="603" width="52" height="36" rx="5" fill="#14b8a6" fill-opacity="0.05"/>
+        <line x1="1290" y1="621" x2="1358" y2="621" stroke="#14b8a6" stroke-width="0.8" stroke-opacity="0.25"/>
+        <circle cx="1324" cy="621" r="3.5" fill="#14b8a6" fill-opacity="0.5"/>
+      </g>
+      <g style="animation:float2 10s ease-in-out infinite 1.5s">
+        <rect x="1170" y="675" width="68" height="52" rx="8" fill="none" stroke="#14b8a6" stroke-width="1.5" stroke-opacity="0.35"/>
+        <rect x="1178" y="683" width="52" height="36" rx="5" fill="#14b8a6" fill-opacity="0.05"/>
+        <line x1="1170" y1="701" x2="1238" y2="701" stroke="#14b8a6" stroke-width="0.8" stroke-opacity="0.22"/>
+        <circle cx="1204" cy="701" r="3.5" fill="#14b8a6" fill-opacity="0.45"/>
+      </g>
+      <!-- 작은 원형 노드 -->
+      <circle cx="880" cy="300" r="6" fill="none" stroke="#14b8a6" stroke-width="1.5" stroke-opacity="0.4" style="animation:float2 6s ease-in-out infinite 2.5s"/>
+      <circle cx="1340" cy="480" r="5" fill="none" stroke="#14b8a6" stroke-width="1.2" stroke-opacity="0.35" style="animation:float2 7s ease-in-out infinite 1s"/>
+      <circle cx="1380" cy="750" r="5" fill="none" stroke="#14b8a6" stroke-width="1.2" stroke-opacity="0.3" style="animation:float2 8s ease-in-out infinite 3.5s"/>
+      <!-- 빛 링 -->
+      <circle cx="1200" cy="420" r="200" fill="none" stroke="#14b8a6" stroke-width="0.5" stroke-opacity="0.07"/>
+      <circle cx="1200" cy="420" r="300" fill="none" stroke="#14b8a6" stroke-width="0.5" stroke-opacity="0.04"/>
+    </svg>
+    <!-- 빛망울 -->
+    <div class="absolute" style="top:10%;right:15%;width:300px;height:300px;background:radial-gradient(circle,rgba(20,184,166,0.1) 0%,transparent 70%);filter:blur(50px)"></div>
+    <div class="absolute" style="bottom:15%;right:8%;width:240px;height:240px;background:radial-gradient(circle,rgba(20,184,166,0.07) 0%,transparent 70%);filter:blur(60px)"></div>
+  </div>
+  <div class="relative z-10 max-w-5xl mx-auto px-6 py-24">
+    <div class="inline-flex items-center gap-2 border border-gray-600 text-gray-400 px-5 py-2 rounded-full text-xs font-black mb-12 uppercase tracking-widest reveal">About LifeTax Company</div>
+    <h1 class="text-5xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight mb-10 reveal delay-1">
+      <span style="color:#e5e7eb">답만 아는 자는 따르고,</span><br/>
+      <span style="color:#14b8a6">이유를 아는 자는 이끕니다.</span>
+    </h1>
+    <p class="text-gray-400 text-base md:text-lg leading-relaxed reveal delay-2">LifeTax는 단순한 금융 서비스이 아닙니다.<br>데이터로 신뢰를 증명하고 개인의 금융 주권을 돕는 혁신 그룹입니다.</p>
+    </div>
+  <!-- Scroll indicator -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center bounce-scroll">
+    <div class="w-5 h-8 border-2 border-gray-600 rounded-full flex justify-center pt-1.5">
+      <div class="w-1 h-1.5 bg-teal-400 rounded-full scroll-dot"></div>
+    </div>
+  </div>
+  </section>
+
+<!-- HERO: Vision & Mission -->
+<section class="relative py-24 overflow-hidden bg-white pt-32 pb-20">
+  <div class="absolute inset-0 hero-grid opacity-40 pointer-events-none"></div>
+  <div class="absolute top-20 right-0 w-96 h-96 rounded-full pointer-events-none" style="background:rgba(240,253,250,0.8);filter:blur(100px)"></div>
+  <div class="absolute bottom-0 left-0 w-80 h-80 rounded-full pointer-events-none" style="background:rgba(239,246,255,0.6);filter:blur(80px)"></div>
+  <div class="relative z-10 max-w-7xl mx-auto px-6">
+    <div class="mb-14 reveal">
+      <div class="inline-flex items-center gap-2 bg-teal-50 border border-teal-100 text-teal-700 px-5 py-2 rounded-full text-xs font-black mb-6 uppercase tracking-widest">About LifeTax</div>
+      <p class="text-gray-500 text-base leading-relaxed max-w-xl">복잡한 세금 제도를 누구나 쉽게 이해하고 활용할 수 있도록 돕는 금융 서비스를 만듭니다.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
+      <div class="reveal delay-1">
+        <h3 class="text-3xl font-black text-teal-500 mb-4">Vision</h3>
+        <p class="text-gray-600 font-black text-lg mb-4 leading-snug">세금 정보를 누구나 쉽게 이해하고 활용할 수 있는 금융 환경을 만듭니다.</p>
+        <p class="text-gray-500 text-sm leading-relaxed">복잡한 세금 제도 때문에 많은 사람들이 받을 수 있는 환급을 놓치거나 불필요한 세금을 부담하고<br>있습니다. LifeTax는 데이터를 기반으로 누구나 자신의 세금 상황을 쉽게 확인하고 더 나은 금융<br>의사결정을 할 수 있도록 돕습니다.</p>
+      </div>
+      <div class="reveal delay-2 md:pl-12">
+        <h3 class="text-3xl font-black text-teal-500 mb-4">Mission</h3>
+        <ul class="space-y-3 text-gray-500 text-sm">
+          <li class="flex items-start gap-2"><svg width="14" height="14" class="mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>세금 환급 가능 여부를 쉽고 빠르게 확인할 수 있는 서비스 제공</li>
+          <li class="flex items-start gap-2"><svg width="14" height="14" class="mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>부동산 세금 시나리오를 비교할 수 있는 분석 도구 개발</li>
+          <li class="flex items-start gap-2"><svg width="14" height="14" class="mt-0.5 flex-shrink-0" viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>복잡한 세법을 누구나 이해할 수 있도록 돕는 금융 서비스 구축</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CORE VALUES -->
+<section class="py-24 px-6 bg-gray-100 border-y border-gray-200">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 reveal"><div class="text-xs font-black text-teal-500 uppercase tracking-widest mb-4">Core Values</div><h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight">핵심 가치</h2></div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+      <div class="group bg-white rounded-2xl p-7 border border-gray-100 card-hover service-card text-center reveal delay-1"><div class="service-icon w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center text-teal-600 mb-5 mx-auto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="12" rx="10" ry="4"/><path d="M2 12c0 4.418 4.477 8 10 8s10-3.582 10-8"/><line x1="2" y1="12" x2="22" y2="12"/></svg></div><h3 class="font-black text-gray-900 text-lg mb-2">데이터 기반</h3><p class="text-gray-500 text-sm leading-relaxed">세금 데이터를 기반으로<br>정확한 분석과 결과를 제공합니다.</p></div>
+      <div class="group bg-white rounded-2xl p-7 border border-gray-100 card-hover service-card text-center reveal delay-2"><div class="service-icon w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center text-teal-600 mb-5 mx-auto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></div><h3 class="font-black text-gray-900 text-lg mb-2">투명성</h3><p class="text-gray-500 text-sm leading-relaxed">복잡한 세금 계산 과정을<br>명확하게 보여줍니다.</p></div>
+      <div class="group bg-white rounded-2xl p-7 border border-gray-100 card-hover service-card text-center reveal delay-3"><div class="service-icon w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center text-teal-600 mb-5 mx-auto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3 class="font-black text-gray-900 text-lg mb-2">접근성</h3><p class="text-gray-500 text-sm leading-relaxed">누구나 쉽게 이해하고 활용할 수 있는<br>금융 서비스를 만듭니다.</p></div>
+      <div class="group bg-white rounded-2xl p-7 border border-gray-100 card-hover service-card text-center reveal delay-4"><div class="service-icon w-12 h-12 bg-teal-50 rounded-xl flex items-center justify-center text-teal-600 mb-5 mx-auto"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div><h3 class="font-black text-gray-900 text-lg mb-2">사용자 중심</h3><p class="text-gray-500 text-sm leading-relaxed">사용자의 실제 금융 문제 해결을<br>중심으로 서비스를 설계합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="py-24 px-6 bg-gray-50 border-t border-gray-100">
+  <div class="max-w-7xl mx-auto">
+    <div class="text-center mb-16 reveal"><div class="text-xs font-black text-teal-500 uppercase tracking-widest mb-4">Team</div><h2 class="text-4xl md:text-5xl font-black text-gray-900 mb-4 tracking-tight" style="line-height:1.2">데이터 기반 분석<br/>금융·세무 전문성</h2><p class="text-gray-500 text-lg max-w-2xl mx-auto">AI 엔지니어, 변호사, 금융 자문위원까지<br>각 분야 전문가들이 데이터 기반 의사결정을 만듭니다.</p></div>
+
+    <h3 class="text-sm font-black text-gray-400 uppercase tracking-widest mb-6 pb-4 border-b border-gray-200">Leadership Team</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      <div class="group bg-white p-6 rounded-2xl border border-gray-100 card-hover service-card reveal delay-1 flex gap-5 items-center">
+        <div class="w-28 h-28 rounded-2xl overflow-hidden bg-teal-50 flex items-center justify-center text-teal-600 flex-shrink-0"><img src="./img/CEO.jpg" alt="HALEY" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentNode.querySelector('svg').style.display='block'"/><svg style="display:none" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div><h4 class="text-base font-black text-gray-900 mb-0.5">HALEY</h4><span class="text-xs font-bold text-teal-500 uppercase tracking-widest">CEO</span><ul class="mt-2 space-y-1"><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>AI 기반 UX 총괄</li><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>서비스 기획</li></ul></div>
+      </div>
+      <div class="group bg-white p-6 rounded-2xl border border-gray-100 card-hover service-card reveal delay-2 flex gap-5 items-center">
+        <div class="w-28 h-28 rounded-2xl overflow-hidden bg-teal-50 flex items-center justify-center text-teal-600 flex-shrink-0"><img src="./img/CTO.jpg" alt="HUGH" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentNode.querySelector('svg').style.display='block'"/><svg style="display:none" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div><h4 class="text-base font-black text-gray-900 mb-0.5">HUGH</h4><span class="text-xs font-bold text-teal-500 uppercase tracking-widest">CTO</span><ul class="mt-2 space-y-1"><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>백엔드 아키텍처</li><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>금융 인프라 구축</li></ul></div>
+      </div>
+      <div class="group bg-white p-6 rounded-2xl border border-gray-100 card-hover service-card reveal delay-3 flex gap-5 items-center">
+        <div class="w-28 h-28 rounded-2xl overflow-hidden bg-teal-50 flex items-center justify-center text-teal-600 flex-shrink-0"><img src="./img/CFO.jpg" alt="박철" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentNode.querySelector('svg').style.display='block'"/><svg style="display:none" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg></div>
+        <div><h4 class="text-base font-black text-gray-900 mb-0.5">박철</h4><span class="text-xs font-bold text-teal-500 uppercase tracking-widest">CFO</span><ul class="mt-2 space-y-1"><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>수익 모델 설계 및 재무 전략</li><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>세법 변화 대응 및 리스크 관리</li></ul></div>
+      </div>
+    </div>
+
+    <h3 class="text-sm font-black text-gray-400 uppercase tracking-widest mb-6 pb-4 border-b border-gray-200">Strategy & Security</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+      <div class="group bg-white p-6 rounded-2xl border border-gray-100 card-hover service-card reveal delay-1 flex gap-5 items-center">
+        <div class="w-28 h-28 rounded-2xl overflow-hidden bg-teal-50 flex items-center justify-center text-teal-600 flex-shrink-0"><img src="./img/CISO.jpg" alt="RIAN" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentNode.querySelector('svg').style.display='block'"/><svg style="display:none" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div><h4 class="text-base font-black text-gray-900 mb-0.5">STELLA</RI:a></h4><span class="text-xs font-bold text-teal-500 uppercase tracking-widest">CISO</span><ul class="mt-2 space-y-1"><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>ZKP 보안 설계</li><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>스마트 컨트랙트</li></ul></div>
+      </div>
+      <div class="group bg-white p-6 rounded-2xl border border-gray-100 card-hover service-card reveal delay-2 flex gap-5 items-center">
+        <div class="w-28 h-28 rounded-2xl overflow-hidden bg-teal-50 flex items-center justify-center text-teal-600 flex-shrink-0"><img src="./img/CIO.jpg" alt="ZENN" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentNode.querySelector('svg').style.display='block'"/><svg style="display:none" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg></div>
+        <div><h4 class="text-base font-black text-gray-900 mb-0.5">ZENN</h4><span class="text-xs font-bold text-teal-500 uppercase tracking-widest">CIO</span><ul class="mt-2 space-y-1"><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>데이터 기반 서비스 모델 설계</li><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>핀테크 기술 연구 및 R&D</li></ul></div>
+      </div>
+      <div class="group bg-white p-6 rounded-2xl border border-gray-100 card-hover service-card reveal delay-3 flex gap-5 items-center">
+        <div class="w-28 h-28 rounded-2xl overflow-hidden bg-teal-50 flex items-center justify-center text-teal-600 flex-shrink-0"><img src="./img/CSO.jpg" alt="JUN" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentNode.querySelector('svg').style.display='block'"/><svg style="display:none" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg></div>
+        <div><h4 class="text-base font-black text-gray-900 mb-0.5">JUN</h4><span class="text-xs font-bold text-teal-500 uppercase tracking-widest">CSO</span><ul class="mt-2 space-y-1"><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>금융 데이터 분석 및 전략 수립</li><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>금융 서비스 시장 확장 전략</li></ul></div>
+      </div>
+    </div>
+
+    <h3 class="text-sm font-black text-gray-400 uppercase tracking-widest mb-6 pb-4 border-b border-gray-200">Advisors</h3>
+
+    <p class="text-xs font-black text-teal-500 uppercase tracking-widest mb-4">AI Technology</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div class="group bg-white p-5 rounded-2xl border border-gray-100 card-hover service-card reveal delay-1 flex gap-5 items-center"><div class="w-28 h-28 rounded-2xl overflow-hidden bg-gray-50 flex items-center justify-center text-gray-400 flex-shrink-0"><img src="./img/홍승필교수님.jpg" alt="홍승필" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentNode.querySelector('svg').style.display='block'"/><svg style="display:none" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg></div><div><h4 class="font-black text-gray-900 text-base mb-0.5">홍승필</h4><span class="text-xs font-bold text-teal-500 uppercase tracking-widest">AI</span><ul class="mt-2 space-y-1"><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>현 한신대학교 교수</li><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>정보보호 및 블록체인 자문</li></ul></div></div>
+      <div class="group bg-white p-5 rounded-2xl border border-gray-100 card-hover service-card reveal delay-2 flex gap-5 items-center"><div class="w-28 h-28 rounded-2xl overflow-hidden bg-gray-50 flex items-center justify-center text-gray-400 flex-shrink-0"><img src="./img/강민구교수님.jpg" alt="강민구" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentNode.querySelector('svg').style.display='block'"/><svg style="display:none" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg></div><div><h4 class="font-black text-gray-900 text-base mb-0.5">강민구</h4><span class="text-xs font-bold text-teal-500 uppercase tracking-widest">AI</span><ul class="mt-2 space-y-1"><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>현 한신대학교 교수</li><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>수학적 검증 프로토콜 자문</li></ul></div></div>
+      <div class="group bg-white p-5 rounded-2xl border border-gray-100 card-hover service-card reveal delay-3 flex gap-5 items-center"><div class="w-28 h-28 rounded-2xl overflow-hidden bg-gray-50 flex items-center justify-center text-gray-400 flex-shrink-0"><img src="./img/류승택교수님.jpg" alt="류승택" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentNode.querySelector('svg').style.display='block'"/><svg style="display:none" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg></div><div><h4 class="font-black text-gray-900 text-base mb-0.5">류승택</h4><span class="text-xs font-bold text-teal-500 uppercase tracking-widest">AI</span><ul class="mt-2 space-y-1"><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>현 한신대학교 교수</li><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>코드 기반 신뢰 구조 자문</li></ul></div></div>
+    </div>
+
+    <p class="text-xs font-black text-teal-500 uppercase tracking-widest mb-4">Financial Strategy</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div class="group bg-white p-5 rounded-2xl border border-gray-100 card-hover service-card reveal delay-1 flex gap-5 items-center"><div class="w-28 h-28 rounded-2xl overflow-hidden bg-gray-50 flex items-center justify-center text-gray-400 flex-shrink-0"><img src="./img/gil-hyejeon.jpg" alt="길혜전" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentNode.querySelector('svg').style.display='block'"/><svg style="display:none" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg></div><div><h4 class="font-black text-gray-900 text-base mb-0.5">길혜전</h4><span class="text-xs font-bold text-teal-500 uppercase tracking-widest">금융</span><ul class="mt-2 space-y-1"><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>현 광교세무법인 세무사</li><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>세무 전략 및 세제 자문</li></ul></div></div>
+    </div>
+
+    <p class="text-xs font-black text-teal-500 uppercase tracking-widest mb-4">Senior Advisor</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+      <div class="group bg-white p-5 rounded-2xl border border-gray-100 card-hover service-card reveal delay-1 flex gap-5 items-center"><div class="w-28 h-28 rounded-2xl overflow-hidden bg-gray-50 flex items-center justify-center text-gray-400 flex-shrink-0"><img src="./img/유동욱대표님.jpg" alt="유동욱" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentNode.querySelector('svg').style.display='block'"/><svg style="display:none" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg></div><div><h4 class="font-black text-gray-900 text-base mb-0.5">유동욱</h4><span class="text-xs font-bold text-teal-500 uppercase tracking-widest">고문</span><ul class="mt-2 space-y-1"><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>전 신한은행 부행장 · 신한DS 대표</li><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>금융 규제 및 리스크 전략 자문</li></ul></div></div>
+    </div>
+
+    <p class="text-xs font-black text-teal-500 uppercase tracking-widest mb-4">Legal & Compliance</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="group bg-white p-5 rounded-2xl border border-gray-100 card-hover service-card reveal delay-1 flex gap-5 items-center"><div class="w-28 h-28 rounded-2xl overflow-hidden bg-gray-50 flex items-center justify-center text-gray-400 flex-shrink-0"><img src="./img/김신호변호사님.jpg" alt="김신호" class="w-full h-full object-cover" onerror="this.style.display='none';this.parentNode.querySelector('svg').style.display='block'"/><svg style="display:none" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 1 0-16 0"/></svg></div><div><h4 class="font-black text-gray-900 text-base mb-0.5">김신호</h4><span class="text-xs font-bold text-teal-500 uppercase tracking-widest">법률</span><ul class="mt-2 space-y-1"><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>현 WOONYON 변호사</li><li class="flex items-center gap-2 text-xs text-gray-400"><div class="w-1.5 h-1.5 bg-teal-400 rounded-full flex-shrink-0"></div>법률 및 컴플라이언스 자문</li></ul></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-24 px-6 reveal" style="background:linear-gradient(135deg,#14b8a6,#0d9488)">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight" style="line-height:1.1">놓치고 있던 세금,<br>지금 확인하세요.</h2>
+    <p class="text-lg mb-10 max-w-xl mx-auto" style="color:rgba(204,251,241,0.9)">LifeTax에서 환급 가능 금액과 부동산 세금 차이를 바로 확인할 수 있습니다.</p>
+    <a href="index.html" class="bg-white text-teal-600 font-black px-10 py-4 rounded-xl hover:bg-teal-50 transition-colors inline-flex items-center gap-2 shadow-xl btn-cta text-base">지금 시작하기 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg></a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-gray-50 border-t border-gray-100 py-12 px-6">
+  <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4">
+    <a href="index.html" class="flex items-center gap-3">
+      <div class="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg></div>
+      <span class="font-black text-gray-900">LifeTax</span>
+    </a>
+    <div class="flex gap-6 text-sm font-semibold text-gray-500">
+      <a href="index.html" class="hover:text-teal-600 transition-colors">홈</a>
+      <a href="company.html" class="text-teal-500">기업 소개</a>
+      <a href="service.html" class="hover:text-teal-600 transition-colors">서비스</a>
+    </div>
+    <span class="text-sm text-gray-400">© 2026 LifeTax. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+  function toggleMobile() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+  }
+
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('main-nav');
+    if (window.scrollY > 20) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  function initReveal() {
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    reveals.forEach(el => {
+      if (!el.classList.contains('visible')) observer.observe(el);
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => initReveal());
+
+  document.addEventListener('click', (e) => {
+    const menu = document.getElementById('mobile-menu');
+    const nav = document.getElementById('main-nav');
+    if (!nav.contains(e.target)) menu.classList.remove('open');
+  });
+</script>
+</body>
+</html>
