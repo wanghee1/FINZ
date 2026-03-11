@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI·블록체인 실증사례 워크샵 | 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="AI 실체를 걷다 : AI·블록체인이 만드는 산업의 현재 - 2026 AI·블록체인 실증사례 워크샵 이벤트 랜딩 페이지" />
+
+  <!-- Pretendard & Inter Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+  />
+
+  <!-- AOS (Animate On Scroll) CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"
+    integrity="sha512-Ho3I+8F0u1Ik5+pUvNbK/CtYFQki71R+xVQ1BM8DT6vKrrO5gkP7FpC18JNpDutLCRa14Q6gttG4rTjzJ3U3MQ=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <style>
+    :root {
+      --bg-main: #0a0a1a;
+      --primary: #6c63ff;
+      --accent: #00d4ff;
+      --text-main: #ffffff;
+      --text-sub: #a0a0b0;
+      --glow: 0 0 20px #6c63ff80;
+
+      --domain-keynote: #6c63ff;
+      --domain-health: #00d4ff;
+      --domain-security: #ff4d6d;
+      --domain-realestate: #f4a261;
+      --domain-marketing: #a8dadc;
+      --domain-tax: #48cae4;
+      --domain-consulting: #9b72cf;
+      --domain-smartfarm: #52b788;
+      --domain-startup: #ffd166;
+      --domain-finance: #06d6a0;
+      --domain-insurance: #118ab2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      height: 100%;
+      scroll-behavior: smooth;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui,
+        "Inter", sans-serif;
+    }
+
+    body {
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* 공통 레이아웃 */
+    main {
+      padding-bottom: 96px; /* 하단 CTA 바와 여백 확보 */
+    }
+
+    .section {
+      position: relative;
+      padding: 72px 20px;
+    }
+
+    .section-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 32px;
+      letter-spacing: 0.04em;
+    }
+
+    .section-title span {
+      color: var(--accent);
+    }
+
+    .section-subtitle {
+      color: var(--text-sub);
+      font-size: 0.95rem;
+      margin-bottom: 32px;
+    }
+
+    /* ------------------------------------------------
+       1. VIDEO HERO
+    --------------------------------------------------*/
+    #hero {
+      position: relative;
+      min-height: 100vh;
+      padding: 0;
+      color: #fff;
+      overflow: hidden;
+      background: radial-gradient(circle at top, #16163a 0, #050511 55%, #000 100%);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(8, 8, 24, 0.5), transparent 45%),
+        rgba(0, 0, 0, 0.55);
+      z-index: -1;
+    }
+
+    /* 비디오가 없을 경우를 대비한 파티클 느낌 배경 */
+    .hero-fallback-particles::before,
+    .hero-fallback-particles::after {
+      content: "";
+      position: absolute;
+      inset: -20%;
+      background-image: radial-gradient(
+          circle at 10% 20%,
+          rgba(108, 99, 255, 0.32) 0,
+          transparent 45%
+        ),
+        radial-gradient(
+          circle at 80% 20%,
+          rgba(0, 212, 255, 0.24) 0,
+          transparent 50%
+        ),
+        radial-gradient(
+          circle at 20% 80%,
+          rgba(111, 255, 176, 0.18) 0,
+          transparent 55%
+        );
+      opacity: 0.6;
+      mix-blend-mode: screen;
+      animation: float-bg 26s linear infinite alternate;
+      pointer-events: none;
+    }
+
+    .hero-fallback-particles::after {
+      animation-duration: 34s;
+      filter: blur(8px);
+      opacity: 0.45;
+    }
+
+    @keyframes float-bg {
+      0% {
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+      50% {
+        transform: translate3d(-3%, -2%, 0) scale(1.03);
+      }
+      100% {
+        transform: translate3d(3%, 4%, 0) scale(1.06);
+      }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 96px 20px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(10, 10, 26, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.52);
+      backdrop-filter: blur(10px);
+      color: var(--text-sub);
+      font-size: 0.78rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      box-shadow: 0 0 14px rgba(0, 212, 255, 0.9);
+    }
+
+    .hero-title {
+      font-size: 2.4rem;
+      line-height: 1.25;
+      font-weight: 800;
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-title span {
+      color: var(--primary);
+      text-shadow: var(--glow);
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: var(--text-sub);
+      max-width: 520px;
+      margin-bottom: 32px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      font-size: 0.86rem;
+      color: var(--text-sub);
+    }
+
+    .hero-meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(14, 14, 34, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-meta-label {
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 0.78rem;
+    }
+
+    /* Scroll arrow */
+    .scroll-indicator {
+      position: absolute;
+      left: 50%;
+      bottom: 32px;
+      transform: translateX(-50%);
+      background: transparent;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.78rem;
+      color: var(--text-sub);
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .scroll-indicator span {
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .scroll-arrow {
+      width: 18px;
+      height: 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.36);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding-top: 6px;
+      animation: bounce 1.4s infinite;
+    }
+
+    .scroll-arrow-inner {
+      width: 4px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
+
+    @keyframes bounce {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(6px);
+      }
+    }
+
+    /* ------------------------------------------------
+       2. ABOUT
+    --------------------------------------------------*/
+    #about {
+      background: radial-gradient(circle at top, #151533 0, #050511 55%, #000 100%);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .about-text-block {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .about-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      font-size: 0.95rem;
+    }
+
+    .about-list-item-title {
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 4px;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .about-list-item-body {
+      color: var(--text-sub);
+      font-size: 0.94rem;
+    }
+
+    .about-visual {
+      position: relative;
+      border-radius: 18px;
+      overflow: hidden;
+      background: radial-gradient(circle at 10% 0, #6c63ff33 0, transparent 50%),
+        radial-gradient(circle at 80% 90%, #00d4ff22 0, transparent 55%),
+        #101028;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.7);
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .about-visual::before {
+      content: "";
+      position: absolute;
+      inset: 1px;
+      border-radius: inherit;
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      pointer-events: none;
+    }
+
+    .about-visual-inner {
+      position: relative;
+      padding: 24px 18px;
+      text-align: center;
+      max-width: 90%;
+    }
+
+    .about-visual-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.48);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      font-size: 0.78rem;
+      color: var(--text-sub);
+      margin-bottom: 18px;
+    }
+
+    .about-visual-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .about-visual-sub {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      margin-bottom: 16px;
+    }
+
+    .about-visual-tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.78rem;
+    }
+
+    .about-tag {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(10, 10, 26, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    /* ------------------------------------------------
+       3. PROGRAM
+    --------------------------------------------------*/
+    #program {
+      background: radial-gradient(circle at top, #16163a 0, #050511 60%, #000 100%);
+    }
+
+    .program-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      font-size: 0.92rem;
+    }
+
+    .program-item {
+      position: relative;
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      gap: 16px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(10, 10, 26, 0.82);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      box-shadow: 0 0 16px rgba(0, 0, 0, 0.55);
+      overflow: hidden;
+    }
+
+    .program-item::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      background: linear-gradient(
+        120deg,
+        rgba(108, 99, 255, 0.08),
+        rgba(0, 212, 255, 0.02)
+      );
+      pointer-events: none;
+      transition: opacity 0.25s ease-out;
+    }
+
+    .program-item:hover::before {
+      opacity: 1;
+    }
+
+    .program-time {
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+    }
+
+    .program-main {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .program-title-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .program-session-name {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .program-domain-tag {
+      font-size: 0.7rem;
+      padding: 3px 9px;
+      border-radius: 999px;
+      color: #f7f7ff;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: var(--primary);
+    }
+
+    .program-topic {
+      font-size: 0.9rem;
+      color: var(--text-main);
+    }
+
+    .program-speaker {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+    }
+
+    /* 등록/점심/휴식/종료 */
+    .program-divider {
+      position: relative;
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: 1px dashed rgba(255, 255, 255, 0.14);
+      background: linear-gradient(
+        90deg,
+        rgba(108, 99, 255, 0.2),
+        rgba(0, 212, 255, 0.1)
+      );
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.84rem;
+      color: var(--text-main);
+      margin: 6px 0;
+    }
+
+    .program-divider-label {
+      font-weight: 600;
+    }
+
+    .program-divider-time {
+      color: var(--text-sub);
+    }
+
+    /* ------------------------------------------------
+       4. SPEAKERS
+    --------------------------------------------------*/
+    #speakers {
+      background: radial-gradient(circle at top, #141432 0, #050511 60%, #000 100%);
+    }
+
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .speaker-card {
+      position: relative;
+      border-radius: 18px;
+      padding: 16px 18px 16px;
+      background: rgba(10, 10, 26, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 0 18px rgba(0, 0, 0, 0.55);
+      transition: box-shadow 0.2s ease-out, border-color 0.2s ease-out,
+        transform 0.2s ease-out;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px 18px;
+      align-items: center;
+    }
+
+    .speaker-avatar-circle {
+      width: 88px;
+      height: 88px;
+      border-radius: 18px;
+      background: radial-gradient(circle at 30% 0, #ffffff55 0, transparent 60%),
+        rgba(108, 99, 255, 0.85);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(108, 99, 255, 0.8);
+    }
+
+    .speaker-avatar-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: inherit;
+      display: block;
+    }
+
+    .speaker-info {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .speaker-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .speaker-affil {
+      font-size: 0.82rem;
+      color: var(--text-sub);
+    }
+
+    .speaker-topic {
+      grid-column: 1 / -1;
+      font-size: 0.88rem;
+      color: var(--text-main);
+      margin-top: 4px;
+    }
+
+    .speaker-card:hover {
+      border-color: rgba(108, 99, 255, 0.7);
+      box-shadow: var(--glow);
+      transform: translateY(-2px);
+    }
+
+    /* ------------------------------------------------
+       5. VENUE
+    --------------------------------------------------*/
+    #venue {
+      background: radial-gradient(circle at top, #13132f 0, #050511 55%, #000 100%);
+      padding-bottom: 120px;
+    }
+
+    .venue-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .venue-map-wrapper {
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 0 32px rgba(0, 0, 0, 0.7);
+      background: #0c0c1f;
+      min-height: 260px;
+    }
+
+    .venue-map-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 260px;
+      border: none;
+      display: block;
+    }
+
+    .venue-info {
+      font-size: 0.95rem;
+      color: var(--text-sub);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .venue-info-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .venue-label {
+      font-size: 0.82rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .venue-main {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .venue-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(10, 10, 26, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      font-size: 0.8rem;
+      margin-top: 4px;
+    }
+
+    /* ------------------------------------------------
+       하단 고정 CTA 바
+    --------------------------------------------------*/
+    .cta-bar {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1000;
+      padding: 10px 16px;
+      background: rgba(10, 10, 26, 0.95);
+      backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.75);
+      transform: translateY(0);
+      transition: transform 0.26s ease-out;
+    }
+
+    .cta-bar.hidden {
+      transform: translateY(100%);
+    }
+
+    .cta-inner {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 0.88rem;
+      color: var(--text-sub);
+    }
+
+    .cta-left {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .cta-main-line {
+      font-weight: 500;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .cta-pill {
+      padding: 3px 8px;
+      border-radius: 999px;
+      background: rgba(5, 5, 17, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      font-size: 0.75rem;
+      color: var(--accent);
+    }
+
+    .cta-sub-line {
+      font-size: 0.8rem;
+    }
+
+    .cta-button {
+      flex-shrink: 0;
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #ffffff;
+      background: radial-gradient(circle at 0 0, #ffffff55 0, transparent 35%),
+        linear-gradient(135deg, #6c63ff, #9b72cf);
+      cursor: pointer;
+      box-shadow: 0 0 18px rgba(108, 99, 255, 0.9);
+      transition: transform 0.16s ease-out, box-shadow 0.16s ease-out,
+        filter 0.16s ease-out;
+      white-space: nowrap;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 26px rgba(108, 99, 255, 0.9);
+      filter: brightness(1.05);
+    }
+
+    .cta-button:active {
+      transform: translateY(0);
+      box-shadow: 0 0 14px rgba(108, 99, 255, 0.7);
+      filter: brightness(0.98);
+    }
+
+    .cta-button-full {
+      width: 100%;
+      text-align: center;
+    }
+
+    /* ------------------------------------------------
+       반응형
+    --------------------------------------------------*/
+    @media (min-width: 640px) {
+      .hero-title {
+        font-size: 2.8rem;
+      }
+      .hero-subtitle {
+        font-size: 1.02rem;
+      }
+
+      .about-grid {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+        gap: 40px;
+      }
+
+      .venue-grid {
+        grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      }
+
+      .venue-map-wrapper iframe {
+        min-height: 300px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+
+      .speakers-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .hero-title {
+        font-size: 3.3rem;
+      }
+
+      .speakers-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .cta-button-full {
+        width: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .program-item {
+        grid-template-columns: 1fr;
+      }
+      .program-time {
+        order: -1;
+      }
+
+      .cta-inner {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <!-- ================================
+         1. VIDEO HERO
+    ==================================-->
+    <section id="hero" class="hero hero-fallback-particles">
+      <div class="hero-overlay"></div>
+
+      <div class="hero-inner" data-aos="fade-up" data-aos-duration="600">
+        <div class="hero-badge">
+          <span class="hero-badge-dot"></span>
+          <span>2026.03.27 (금) · 스페이스쉐어 삼성역센터 델피노홀</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span>AI·블록체인</span> 실증사례 워크샵
+        </h1>
+        <p class="hero-subtitle">
+          <strong>“AI 실체를 걷다”</strong><br />
+          AI와 블록체인이 이미 만들어내고 있는 산업 현장의 실증사례를 통해<br />
+          기술의 hype를 넘어, 실제 비즈니스 임팩트를 확인하는 시간.
+        </p>
+
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">일시</span>
+            <span>2026.03.27 (금) 09:30 ~ 16:00</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">장소</span>
+            <span>스페이스쉐어 삼성역센터 델피노홀 (서울 강남구 테헤란로 427)</span>
+          </div>
+          <div class="hero-meta-item">
+            <span class="hero-meta-label">대상</span>
+            <span>기업 실무자 · 스타트업 · 공공기관 · 교육/연구자 · 대학(원)생</span>
+          </div>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="scroll-indicator"
+        onclick="document.querySelector('#about').scrollIntoView({ behavior: 'smooth' });"
+      >
+        <span>Scroll</span>
+        <div class="scroll-arrow">
+          <div class="scroll-arrow-inner"></div>
+        </div>
+      </button>
+    </section>
+
+    <!-- ================================
+         2. ABOUT
+    ==================================-->
+    <section id="about" class="section">
+      <div class="section-inner">
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="600">
+          ABOUT <span>행사 소개</span>
+        </h2>
+        <p
+          class="section-subtitle"
+          data-aos="fade-up"
+          data-aos-duration="600"
+          data-aos-delay="80"
+        >
+          AI와 블록체인의 만남이 어떻게 산업과 비즈니스를 바꾸고 있는지,<br />
+          국내 다양한 도메인의 실증사례를 한 자리에서 공유합니다.
+        </p>
+
+        <div class="about-grid">
+          <div
+            class="about-text-block"
+            data-aos="fade-right"
+            data-aos-duration="600"
+          >
+            <ul class="about-list">
+              <li>
+                <div class="about-list-item-title">행사 개요</div>
+                <div class="about-list-item-body">
+                  헬스케어, 정보보안, 금융, 부동산, 스마트팜, 마케팅 등 다양한 산업에서 진행 중인
+                  <strong>AI·블록체인 실증 프로젝트</strong>를 실제 담당자들이 직접 소개합니다.
+                </div>
+              </li>
+              <li>
+                <div class="about-list-item-title">참가 대상</div>
+                <div class="about-list-item-body">
+                  · AI/블록체인 도입을 고민 중인 <strong>기업 담당자 및 의사결정자</strong><br />
+                  · 데이터·인공지능 비즈니스를 준비 중인 <strong>스타트업/예비창업자</strong><br />
+                  · DX, 스마트시티, 디지털금융 등 <strong>정책·공공기관 담당자</strong><br />
+                  · AI·데이터 분야 진로를 준비하는 <strong>대학(원)생</strong>
+                </div>
+              </li>
+              <li>
+                <div class="about-list-item-title">참가비</div>
+                <div class="about-list-item-body">
+                  · <strong>대학(원)생</strong> 90,000원<br />
+                  · <strong>직장인</strong> 190,000원<br />
+                  <span style="font-size: 0.88em; opacity: 0.9;">(신청·결제는 온오프믹스 페이지에서 진행됩니다)</span>
+                </div>
+              </li>
+              <li>
+                <div class="about-list-item-title">기대 효과</div>
+                <div class="about-list-item-body">
+                  · 실제 도입사례를 통해 <strong>기술 선정과 PoC 전략</strong> 인사이트 확보<br />
+                  · 도메인별 파트너 및 전문가와의 <strong>네트워킹 기회</strong> 제공<br />
+                  · 최신 AI·블록체인 트렌드와 <strong>규제·보안·데이터 활용</strong>에 대한 시야 확장
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div
+            class="about-visual"
+            data-aos="fade-left"
+            data-aos-duration="600"
+          >
+            <div class="about-visual-inner">
+              <div class="about-visual-pill">
+                <span>AI × Blockchain</span>
+                <span style="opacity: 0.6;">실증사례 컬렉션 2026</span>
+              </div>
+              <div class="about-visual-title">산업 현장에서 검증된 AI</div>
+              <div class="about-visual-sub">
+                기술이 아니라, <strong>문제를 해결하는 AI</strong>를 만나보세요.<br />
+                기조연설부터 도메인별 인더스트리 세션까지,
+                <br />실제 적용 사례 중심으로 구성되어 있습니다.
+              </div>
+              <div class="about-visual-tags">
+                <span class="about-tag">실증 프로젝트</span>
+                <span class="about-tag">산업별 인사이트</span>
+                <span class="about-tag">네트워킹</span>
+                <span class="about-tag">AI 전략</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+         3. PROGRAM
+    ==================================-->
+    <section id="program" class="section">
+      <div class="section-inner">
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="600">
+          PROGRAM <span>프로그램 타임라인</span>
+        </h2>
+        <p
+          class="section-subtitle"
+          data-aos="fade-up"
+          data-aos-duration="600"
+          data-aos-delay="80"
+        >
+          시간 순으로 구성된 프로그램을 통해, 하루 동안 <strong>AI·블록체인 실증사례 로드맵</strong>을
+          따라가듯 경험하실 수 있습니다.
+        </p>
+
+        <div class="program-list">
+          <!-- 등록 및 오프닝 -->
+          <div
+            class="program-divider"
+            data-aos="fade-up"
+            data-aos-duration="600"
+          >
+            <span class="program-divider-label">등록 및 오프닝</span>
+            <span class="program-divider-time">09:30 - 10:00</span>
+          </div>
+
+          <article
+            class="program-item"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="100"
+          >
+            <div class="program-time">09:30 - 10:00</div>
+            <div class="program-main">
+              <div class="program-title-row">
+                <div class="program-session-name">등록 &amp; 네트워킹</div>
+              </div>
+              <div class="program-topic">
+                현장 등록 및 참가자 네트워킹, 행사 안내
+              </div>
+            </div>
+          </article>
+
+          <!-- 개회 -->
+          <article
+            class="program-item"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="140"
+          >
+            <div class="program-time">10:00 - 10:30</div>
+            <div class="program-main">
+              <div class="program-title-row">
+                <div class="program-session-name">개회 · Greeting Message</div>
+              </div>
+              <div class="program-topic">AI·블록체인 시대, 산업과 교육의 역할</div>
+              <div class="program-speaker">
+                강민구 교수 (한신대) · 한국블록체인학회장 · 한국데이터사이언스학회장
+              </div>
+            </div>
+          </article>
+
+          <!-- Session1 기조연설 -->
+          <article
+            class="program-item"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="180"
+          >
+            <div class="program-time">10:30 - 10:50</div>
+            <div class="program-main">
+              <div class="program-title-row">
+                <div class="program-session-name">Session 1 · ABC 기조연설</div>
+                <span class="program-domain-tag">
+                  기조연설
+                </span>
+              </div>
+              <div class="program-topic">
+                ABC가 바꾸는 디지털 세상
+              </div>
+              <div class="program-speaker">
+                홍승필 교수 (한신대)
+              </div>
+            </div>
+          </article>
+
+          <!-- Session2 헬스케어 -->
+          <article
+            class="program-item"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="220"
+          >
+            <div class="program-time">10:50 - 11:10</div>
+            <div class="program-main">
+              <div class="program-title-row">
+                <div class="program-session-name">Session 2 · AI 헬스케어</div>
+                <span class="program-domain-tag">
+                  헬스케어
+                </span>
+              </div>
+              <div class="program-topic">
+                AI 임상사진 솔루션
+              </div>
+              <div class="program-speaker">
+                우주엽 대표 (BCN컴퍼니)
+              </div>
+            </div>
+          </article>
+
+          <!-- Session3 정보보안 -->
+          <article
+            class="program-item"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="260"
+          >
+            <div class="program-time">11:10 - 11:30</div>
+            <div class="program-main">
+              <div class="program-title-row">
+                <div class="program-session-name">Session 3 · 사이버 보안</div>
+                <span class="program-domain-tag">
+                  정보보안
+                </span>
+              </div>
+              <div class="program-topic">
+                AI x Identity 기반 사이버 보안
+              </div>
+              <div class="program-speaker">
+                이재형 대표 (옥타코)
+              </div>
+            </div>
+          </article>
+
+          <!-- Session4 부동산 -->
+          <article
+            class="program-item"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="300"
+          >
+            <div class="program-time">11:30 - 11:50</div>
+            <div class="program-main">
+              <div class="program-title-row">
+                <div class="program-session-name">Session 4 · 스마트시티 &amp; 건설</div>
+                <span class="program-domain-tag">
+                  부동산
+                </span>
+              </div>
+              <div class="program-topic">
+                Smart City &amp; Construction AI
+              </div>
+              <div class="program-speaker">
+                권정협 전무 (어반자산운용)
+              </div>
+            </div>
+          </article>
+
+          <!-- 점심식사 및 네트워킹 -->
+          <div
+            class="program-divider"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="340"
+          >
+            <span class="program-divider-label">점심식사 &amp; 네트워킹</span>
+            <span class="program-divider-time">11:50 - 13:00</span>
+          </div>
+
+          <!-- Session5 마케팅 -->
+          <article
+            class="program-item"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="380"
+          >
+            <div class="program-time">13:00 - 13:20</div>
+            <div class="program-main">
+              <div class="program-title-row">
+                <div class="program-session-name">Session 5 · AI 마케팅</div>
+                <span class="program-domain-tag">
+                  마케팅
+                </span>
+              </div>
+              <div class="program-topic">
+                Creative Intelligence with Intelligent System!!
+              </div>
+              <div class="program-speaker">
+                김영숙 대표 (A3I)
+              </div>
+            </div>
+          </article>
+
+          <!-- Session6 세무·회계 -->
+          <article
+            class="program-item"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="420"
+          >
+            <div class="program-time">13:20 - 13:40</div>
+            <div class="program-main">
+              <div class="program-title-row">
+                <div class="program-session-name">Session 6 · AI 세무</div>
+                <span class="program-domain-tag">
+                  세무·회계
+                </span>
+              </div>
+              <div class="program-topic">
+                AI Agent 기반 세무 자동화
+              </div>
+              <div class="program-speaker">
+                길혜전 세무사 (광교세무법인)
+              </div>
+            </div>
+          </article>
+
+          <!-- Session7 AI 컨설팅 -->
+          <article
+            class="program-item"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="460"
+          >
+            <div class="program-time">13:40 - 14:00</div>
+            <div class="program-main">
+              <div class="program-title-row">
+                <div class="program-session-name">Session 7 · AI 컨설팅</div>
+                <span class="program-domain-tag">
+                  AI 컨설팅
+                </span>
+              </div>
+              <div class="program-topic">
+                AICC 실증 사례
+              </div>
+              <div class="program-speaker">
+                임기범 이사 (AI경영학회)
+              </div>
+            </div>
+          </article>
+
+          <!-- 휴식 -->
+          <div
+            class="program-divider"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="500"
+          >
+            <span class="program-divider-label">Break · 휴식</span>
+            <span class="program-divider-time">14:00 - 14:20</span>
+          </div>
+
+          <!-- Session8 스마트팜 -->
+          <article
+            class="program-item"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="540"
+          >
+            <div class="program-time">14:20 - 14:40</div>
+            <div class="program-main">
+              <div class="program-title-row">
+                <div class="program-session-name">Session 8 · 스마트팜</div>
+                <span class="program-domain-tag">
+                  스마트팜
+                </span>
+              </div>
+              <div class="program-topic">
+                AI &amp; 블록체인 스마트팜
+              </div>
+              <div class="program-speaker">
+                박철 대표 (테크엔)
+              </div>
+            </div>
+          </article>
+
+          <!-- Session9 스타트업 -->
+          <article
+            class="program-item"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="580"
+          >
+            <div class="program-time">14:40 - 15:00</div>
+            <div class="program-main">
+              <div class="program-title-row">
+                <div class="program-session-name">Session 9 · 스타트업</div>
+                <span class="program-domain-tag">
+                  스타트업
+                </span>
+              </div>
+              <div class="program-topic">
+                AI, 물고기 잡는 법을 가르쳐주마
+              </div>
+              <div class="program-speaker">
+                최부영 대표 (수지하우스)
+              </div>
+            </div>
+          </article>
+
+          <!-- Session10 금융 -->
+          <article
+            class="program-item"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="620"
+          >
+            <div class="program-time">15:00 - 15:20</div>
+            <div class="program-main">
+              <div class="program-title-row">
+                <div class="program-session-name">Session 10 · 디지털 금융</div>
+                <span class="program-domain-tag">
+                  금융
+                </span>
+              </div>
+              <div class="program-topic">
+                데이터가 돈이 되는 마법!!
+              </div>
+              <div class="program-speaker">
+                서성호 이사 (Only1)
+              </div>
+            </div>
+          </article>
+
+          <!-- Session11 보험 -->
+          <article
+            class="program-item"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="660"
+          >
+            <div class="program-time">15:20 - 15:40</div>
+            <div class="program-main">
+              <div class="program-title-row">
+                <div class="program-session-name">Session 11 · 인슈어테크</div>
+                <span class="program-domain-tag">
+                  보험
+                </span>
+              </div>
+              <div class="program-topic">
+                보험사는 왜 기술을 검증하는가?
+              </div>
+              <div class="program-speaker">
+                정규식 부장 (교보생명)
+              </div>
+            </div>
+          </article>
+
+          <!-- 전체 Q&A 및 종료 -->
+          <div
+            class="program-divider"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="700"
+          >
+            <span class="program-divider-label">전체 Q&amp;A 및 종료</span>
+            <span class="program-divider-time">15:40 - 16:00</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+         4. SPEAKERS
+    ==================================-->
+    <section id="speakers" class="section">
+      <div class="section-inner">
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="600">
+          SPEAKERS <span>발표자</span>
+        </h2>
+        <p
+          class="section-subtitle"
+          data-aos="fade-up"
+          data-aos-duration="600"
+          data-aos-delay="80"
+        >
+          다양한 산업의 실증 프로젝트를 이끌고 있는 <strong>현장의 전문가들</strong>을 한 자리에서
+          만나보세요.
+        </p>
+
+        <div class="speakers-grid">
+          <!-- 각 발표자 카드 -->
+          <article
+            class="speaker-card"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="100"
+          >
+            <div class="speaker-info">
+              <div class="speaker-name">강민구 교수</div>
+              <div class="speaker-affil">
+                한신대학교
+              </div>
+            </div>
+            <div class="speaker-avatar-circle">
+              <!-- 프로필 이미지 예시: <img src="assets/images/speakers/kangmingoo.jpg" alt="강민구 교수" /> -->
+            </div>
+            <div class="speaker-topic">개회 및 Greeting Message</div>
+          </article>
+
+          <article
+            class="speaker-card"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="130"
+          >
+            <div class="speaker-info">
+              <div class="speaker-name">홍승필 교수</div>
+              <div class="speaker-affil">한신대학교</div>
+            </div>
+            <div class="speaker-avatar-circle">
+              <!-- 예시: <img src="assets/images/speakers/hongseungpil.jpg" alt="홍승필 교수" /> -->
+            </div>
+            <div class="speaker-topic">ABC가 바꾸는 디지털 세상</div>
+          </article>
+
+          <article
+            class="speaker-card"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="160"
+          >
+            <div class="speaker-info">
+              <div class="speaker-name">우주엽 대표</div>
+              <div class="speaker-affil">BCN컴퍼니</div>
+            </div>
+            <div class="speaker-avatar-circle">
+              <!-- 예시: <img src="assets/images/speakers/woojooyeop.jpg" alt="우주엽 대표" /> -->
+            </div>
+            <div class="speaker-topic">AI 임상사진 솔루션</div>
+          </article>
+
+          <article
+            class="speaker-card"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="190"
+          >
+            <div class="speaker-info">
+              <div class="speaker-name">이재형 대표</div>
+              <div class="speaker-affil">옥타코</div>
+            </div>
+            <div class="speaker-avatar-circle">
+              <!-- 예시: <img src="assets/images/speakers/leejahyung.jpg" alt="이재형 대표" /> -->
+            </div>
+            <div class="speaker-topic">AI x Identity 기반 사이버 보안</div>
+          </article>
+
+          <article
+            class="speaker-card"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="220"
+          >
+            <div class="speaker-info">
+              <div class="speaker-name">권정협 전무</div>
+              <div class="speaker-affil">어반자산운용</div>
+            </div>
+            <div class="speaker-avatar-circle">
+              <!-- 예시: <img src="assets/images/speakers/kwonjeonghyup.jpg" alt="권정협 전무" /> -->
+            </div>
+            <div class="speaker-topic">Smart City &amp; Construction AI</div>
+          </article>
+
+          <article
+            class="speaker-card"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="250"
+          >
+            <div class="speaker-info">
+              <div class="speaker-name">김영숙 대표</div>
+              <div class="speaker-affil">A3I</div>
+            </div>
+            <div class="speaker-avatar-circle">
+              <!-- 예시: <img src="assets/images/speakers/kimyoungsook.jpg" alt="김영숙 대표" /> -->
+            </div>
+            <div class="speaker-topic">
+              Creative Intelligence with Intelligent System!!
+            </div>
+          </article>
+
+          <article
+            class="speaker-card"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="280"
+          >
+            <div class="speaker-info">
+              <div class="speaker-name">길혜전 세무사</div>
+              <div class="speaker-affil">광교세무법인</div>
+            </div>
+            <div class="speaker-avatar-circle">
+              <!-- 예시: <img src="assets/images/speakers/gilhaejeon.jpg" alt="길혜전 세무사" /> -->
+            </div>
+            <div class="speaker-topic">AI Agent 기반 세무 자동화</div>
+          </article>
+
+          <article
+            class="speaker-card"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="310"
+          >
+            <div class="speaker-info">
+              <div class="speaker-name">임기범 이사</div>
+              <div class="speaker-affil">AI경영학회</div>
+            </div>
+            <div class="speaker-avatar-circle">
+              <!-- 예시: <img src="assets/images/speakers/limgibeom.jpg" alt="임기범 이사사" /> -->
+            </div>
+            <div class="speaker-topic">AICC 실증 사례</div>
+          </article>
+
+          <article
+            class="speaker-card"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="340"
+          >
+            <div class="speaker-info">
+              <div class="speaker-name">박철 대표</div>
+              <div class="speaker-affil">테크엔</div>
+            </div>
+            <div class="speaker-avatar-circle">
+              <!-- 예시: <img src="assets/images/speakers/parkcheol.jpg" alt="박철 대표" /> -->
+            </div>
+            <div class="speaker-topic">AI &amp; 블록체인 스마트팜</div>
+          </article>
+
+          <article
+            class="speaker-card"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="370"
+          >
+            <div class="speaker-info">
+              <div class="speaker-name">최부영 대표</div>
+              <div class="speaker-affil">수지하우스</div>
+            </div>
+            <div class="speaker-avatar-circle">
+              <!-- 예시: <img src="assets/images/speakers/choebooyoung.jpg" alt="최부영 대표" /> -->
+            </div>
+            <div class="speaker-topic">
+              AI, 물고기 잡는 법을 가르쳐주마
+            </div>
+          </article>
+
+          <article
+            class="speaker-card"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="400"
+          >
+            <div class="speaker-info">
+              <div class="speaker-name">서성호 이사</div>
+              <div class="speaker-affil">Only1</div>
+            </div>
+            <div class="speaker-avatar-circle">
+              <!-- 예시: <img src="assets/images/speakers/seoseongho.jpg" alt="서성호 이사" /> -->
+            </div>
+            <div class="speaker-topic">데이터가 돈이 되는 마법!!</div>
+          </article>
+
+          <article
+            class="speaker-card"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="430"
+          >
+            <div class="speaker-info">
+              <div class="speaker-name">정규식 부장</div>
+              <div class="speaker-affil">교보생명</div>
+            </div>
+            <div class="speaker-avatar-circle">
+              <!-- 예시: <img src="assets/images/speakers/junggyusik.jpg" alt="정규식 부장" /> -->
+            </div>
+            <div class="speaker-topic">보험사는 왜 기술을 검증하는가?</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================
+         5. VENUE
+    ==================================-->
+    <section id="venue" class="section">
+      <div class="section-inner">
+        <h2 class="section-title" data-aos="fade-up" data-aos-duration="600">
+          VENUE <span>장소 안내</span>
+        </h2>
+        <p
+          class="section-subtitle"
+          data-aos="fade-up"
+          data-aos-duration="600"
+          data-aos-delay="80"
+        >
+          서울 강남권 중심, 삼성역 인근에서 진행됩니다.
+        </p>
+
+        <div class="venue-grid">
+          <div
+            class="venue-map-wrapper"
+            data-aos="fade-up"
+            data-aos-duration="600"
+          >
+            <!-- Google Maps Embed -->
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3164.218699835046!2d127.0528540763067!3d37.50613097205914!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca495a3d1ad4f%3A0x2ea3f8dcbda3c8f1!2z7Ius7LKc7Yq47JqwIOuCqOyCrO2EsOq1rCDsmIbtmLjrpqzroZwg64uo7Iqk65286rCB67aA64-Z!5e0!3m2!1sko!2skr!4v1700000000000!5m2!1sko!2skr"
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+
+          <div
+            class="venue-info"
+            data-aos="fade-up"
+            data-aos-duration="600"
+            data-aos-delay="120"
+          >
+            <div class="venue-info-row">
+              <div class="venue-label">장소</div>
+              <div class="venue-main">
+                스페이스쉐어 삼성역센터 델피노홀
+              </div>
+              <div>서울 강남구 테헤란로 427, 스페이스쉐어 삼성역센터 델피노홀</div>
+              <div class="venue-badge">
+                📍 삼성역 도보 5분
+              </div>
+            </div>
+
+            <div class="venue-info-row">
+              <div class="venue-label">지하철</div>
+              <div>
+                · 2호선 <strong>삼성역</strong> 하차 후 도보 약 5분<br />
+                · 2호선/분당선 <strong>선릉역</strong> 인근에서도 도보 접근 가능
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================================
+       하단 고정 CTA 바
+  ==================================-->
+  <div class="cta-bar" id="ctaBar">
+    <div class="cta-inner">
+      <div class="cta-left">
+        <div class="cta-main-line">
+          <span>📅 2026.03.27 (금) 09:30</span>
+          <span>·</span>
+          <span>📍 스페이스쉐어 삼성역센터 델피노홀</span>
+          <span class="cta-pill">AI·블록체인 실증사례 워크샵</span>
+        </div>
+        <div class="cta-sub-line">
+          지금 사전 등록하고 도메인별 실증사례와 네트워킹 기회를 한 번에 만나보세요.
+        </div>
+      </div>
+      <button
+        class="cta-button cta-button-full"
+        type="button"
+        onclick="window.open('https://onoffmix.com/event/339105', '_blank', 'noopener');"
+      >
+        신청하기
+      </button>
+    </div>
+  </div>
+
+  <!-- AOS JS -->
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.min.js"
+    integrity="sha512-ymSkCkXU0Lh9t9f/7p7rLANSaDv5Z70uQGMmvVQwxS4kqai2oGJpUln7e61yV+z7WkHkY4qT3/7T4l4p1BM9mw=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  ></script>
+
+  <script>
+    // AOS 초기화
+    AOS.init({
+      once: true,
+      duration: 600,
+      easing: "ease-out-cubic",
+    });
+
+    // 하단 CTA 바 스크롤 방향에 따라 숨김/표시
+    (function () {
+      var ctaBar = document.getElementById("ctaBar");
+      var lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+      var ticking = false;
+
+      function onScroll() {
+        var currentY = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (currentY > lastScrollY + 8) {
+          // 아래로 스크롤
+          ctaBar.classList.add("hidden");
+        } else if (currentY < lastScrollY - 8) {
+          // 위로 스크롤
+          ctaBar.classList.remove("hidden");
+        }
+
+        lastScrollY = currentY <= 0 ? 0 : currentY;
+        ticking = false;
+      }
+
+      window.addEventListener(
+        "scroll",
+        function () {
+          if (!ticking) {
+            window.requestAnimationFrame(onScroll);
+            ticking = true;
+          }
+        },
+        { passive: true }
+      );
+    })();
+  </script>
+</body>
+</html>
+
