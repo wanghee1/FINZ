@@ -1,0 +1,7 @@
+[
+  {"upper_limit": 100000000, "rate": 0.10, "deduction": 0},
+  {"upper_limit": 500000000, "rate": 0.20, "deduction": 10000000},
+  {"upper_limit": 1000000000, "rate": 0.30, "deduction": 60000000},
+  {"upper_limit": 3000000000, "rate": 0.40, "deduction": 160000000},
+  {"upper_limit": null, "rate": 0.50, "deduction": 460000000}
+]

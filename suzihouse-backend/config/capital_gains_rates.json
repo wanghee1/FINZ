@@ -1,0 +1,50 @@
+[
+  {
+    "upper_limit": 14000000,
+    "base_rate": 0.06,
+    "deduction": 0,
+    "surcharge_rate_2house": 0.26
+  },
+  {
+    "upper_limit": 50000000,
+    "base_rate": 0.15,
+    "deduction": 1260000,
+    "surcharge_rate_2house": 0.35
+  },
+  {
+    "upper_limit": 88000000,
+    "base_rate": 0.24,
+    "deduction": 5760000,
+    "surcharge_rate_2house": 0.44
+  },
+  {
+    "upper_limit": 150000000,
+    "base_rate": 0.35,
+    "deduction": 15440000,
+    "surcharge_rate_2house": 0.55
+  },
+  {
+    "upper_limit": 300000000,
+    "base_rate": 0.38,
+    "deduction": 19940000,
+    "surcharge_rate_2house": 0.58
+  },
+  {
+    "upper_limit": 500000000,
+    "base_rate": 0.40,
+    "deduction": 25940000,
+    "surcharge_rate_2house": 0.60
+  },
+  {
+    "upper_limit": 1000000000,
+    "base_rate": 0.42,
+    "deduction": 35940000,
+    "surcharge_rate_2house": 0.62
+  },
+  {
+    "upper_limit": null,
+    "base_rate": 0.45,
+    "deduction": 65940000,
+    "surcharge_rate_2house": 0.65
+  }
+]

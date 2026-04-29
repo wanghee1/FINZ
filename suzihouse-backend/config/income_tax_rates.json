@@ -1,0 +1,31 @@
+{
+  "2020": [
+    {"upper_limit": 12000000, "rate": 0.06, "deduction": 0},
+    {"upper_limit": 46000000, "rate": 0.15, "deduction": 1080000},
+    {"upper_limit": 88000000, "rate": 0.24, "deduction": 5220000},
+    {"upper_limit": 150000000, "rate": 0.35, "deduction": 14900000},
+    {"upper_limit": 300000000, "rate": 0.38, "deduction": 19400000},
+    {"upper_limit": 500000000, "rate": 0.40, "deduction": 25400000},
+    {"upper_limit": null, "rate": 0.42, "deduction": 35400000}
+  ],
+  "2021": [
+    {"upper_limit": 12000000, "rate": 0.06, "deduction": 0},
+    {"upper_limit": 46000000, "rate": 0.15, "deduction": 1080000},
+    {"upper_limit": 88000000, "rate": 0.24, "deduction": 5220000},
+    {"upper_limit": 150000000, "rate": 0.35, "deduction": 14900000},
+    {"upper_limit": 300000000, "rate": 0.38, "deduction": 19400000},
+    {"upper_limit": 500000000, "rate": 0.40, "deduction": 25400000},
+    {"upper_limit": 1000000000, "rate": 0.42, "deduction": 35400000},
+    {"upper_limit": null, "rate": 0.45, "deduction": 65400000}
+  ],
+  "2023": [
+    {"upper_limit": 14000000, "rate": 0.06, "deduction": 0},
+    {"upper_limit": 50000000, "rate": 0.15, "deduction": 1260000},
+    {"upper_limit": 88000000, "rate": 0.24, "deduction": 5760000},
+    {"upper_limit": 150000000, "rate": 0.35, "deduction": 15440000},
+    {"upper_limit": 300000000, "rate": 0.38, "deduction": 19940000},
+    {"upper_limit": 500000000, "rate": 0.40, "deduction": 25940000},
+    {"upper_limit": 1000000000, "rate": 0.42, "deduction": 35940000},
+    {"upper_limit": null, "rate": 0.45, "deduction": 65940000}
+  ]
+}

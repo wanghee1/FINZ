@@ -1,0 +1,67 @@
+# Dependencies
+node_modules/
+.venv/
+__pycache__/
+
+# Lock files
+package-lock.json
+
+# Expo
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Docs
+**/docs/
+
+# Environment & secrets
+.env
+.env*.local
+.env.docker
+secrets/
+
+# Database
+*.db
+
+# Python
+.pytest_cache/
+*.pyc
+*.pyo
+*.egg-info/
+
+# Native
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro
+.metro-health-check*
+
+# Debug
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+
+# OS
+.DS_Store
+*.pem
+Thumbs.db
+
+# Binary documents (use shared drive instead)
+*.pdf
+
+# TypeScript
+*.tsbuildinfo
+
+# Generated native folders
+/ios
+/android
+
+# IDE
+.vscode/
+.idea/

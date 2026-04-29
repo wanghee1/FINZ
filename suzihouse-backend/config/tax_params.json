@@ -1,0 +1,15 @@
+{
+  "youth_reduction_rate": 0.90,
+  "senior_reduction_rate": 0.70,
+  "youth_exemption_years": 5,
+  "senior_exemption_years": 3,
+  "annual_limit_before_2023": 1500000,
+  "annual_limit_2023_onwards": 2000000,
+  "local_tax_rate": 0.10,
+  "max_military_deduction_months": 72,
+  "youth_age_min": 15,
+  "youth_age_max": 34,
+  "senior_age_min": 60,
+  "rectification_base_year": 2020,
+  "rectification_end_year": 2025
+}
